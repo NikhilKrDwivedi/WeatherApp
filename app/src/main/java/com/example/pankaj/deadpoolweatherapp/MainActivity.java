@@ -4,6 +4,15 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
@@ -19,52 +28,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RemoteFetch fetch=new RemoteFetch();
-        Log.d("weather Data","....."+fetch.getJSON(this,"Delhi"));
-    }
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=b1ed602908528e97950ba59fe098bdd1";
 
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                       Log.d("Data....","...."+response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
 
-    private class RemoteFetch {
-
-        private static final String OPEN_WEATHER_MAP_API =
-                "http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=b1ed602908528e97950ba59fe098bdd1";
-
-        public  JSONObject getJSON(Context context, String city){
-            try {
-                URL url = new URL(String.format(OPEN_WEATHER_MAP_API));
-                Log.d("Online.....","Data....1");
-                HttpURLConnection connection =
-                        (HttpURLConnection)url.openConnection();
-                Log.d("Online.....","Data....2");
-                connection.addRequestProperty("Deadpool",
-                        context.getString(R.string.open_weather_maps_app_id));
-                Log.d("Online.....","Data....3"+connection.getResponseMessage());
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(connection.getInputStream()));
-                Log.d("Online.....","Data....4");
-
-                StringBuffer json = new StringBuffer(1024);
-                String tmp="";
-                while((tmp=reader.readLine())!=null)
-                    json.append(tmp).append("\n");
-                Log.d("Online.....","Data....5");
-                reader.close();
-                JSONObject data = new JSONObject(json.toString());
-                Log.d("Online.....","Data....6");
-                // This value will be 404 if the request was not
-                // successful
-                if(data.getInt("cod") != 200){
-                    Log.d("Online.....","Data....7");
-                    return null;
-                }
-
-                return data;
-            }catch(Exception e){
-                Log.e("Eception....","....."+e.getMessage());
-                return null;
             }
-        }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
     }
+
+
 
 
 }

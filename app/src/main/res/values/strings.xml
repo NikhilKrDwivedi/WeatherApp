@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DeadpoolWeatherApp</string>
+    <string name="open_weather_maps_app_id">b1ed602908528e97950ba59fe098bdd1</string>
+</resources>

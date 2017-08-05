@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView
+            android:text="@string/Date_day"
+            android:id="@+id/txtDateDay"
+            android:layout_span="2"
+            android:layout_gravity="center"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/mintemp"
+            android:id="@+id/txtMin"
+            android:padding="3dp" />
+        <TextView
+            android:text="@string/maxtemp"
+            android:id="@+id/txtMax"
+            android:gravity="right"
+            android:padding="3dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/daytemp"
+            android:id="@+id/txtDaytemp"
+            android:padding="3dp" />
+        <TextView
+            android:text="@string/nigntemp"
+            android:id="@+id/txtNighttemp"
+            android:gravity="right"
+            android:padding="3dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/morningemp"
+            android:id="@+id/txtMorningtemp"
+            android:padding="3dp" />
+        <TextView
+            android:text="@string/eveningtemp"
+            android:id="@+id/txtEveingtemp"
+            android:gravity="right"
+            android:padding="3dp" />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/maininfo"
+            android:id="@+id/txtmaininfo"
+            android:layout_span="2"
+            android:padding="3dp"/>
+
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:text="@string/maininfoDescription"
+            android:id="@+id/txtmaininfoDescription"
+            android:layout_span="2"
+            android:padding="3dp"/>
+
+    </TableRow>
+</TableLayout>

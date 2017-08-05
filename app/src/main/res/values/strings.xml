@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">DeadpoolWeatherApp</string>
     <string name="open_weather_maps_app_id">b1ed602908528e97950ba59fe098bdd1</string>
+    <string name="Date_day">Date and day</string>
+    <string name="mintemp">Min Temp</string>
+    <string name="maxtemp">Max Temp</string>
+    <string name="daytemp">Day Temp</string>
+    <string name="nigntemp">Night Temp</string>
+    <string name="morningemp">Morning Temp</string>
+    <string name="eveningtemp">Evening Temp</string>
+    <string name="maininfo">Main Info</string>
+    <string name="maininfoDescription">Main Info Description</string>
 </resources>

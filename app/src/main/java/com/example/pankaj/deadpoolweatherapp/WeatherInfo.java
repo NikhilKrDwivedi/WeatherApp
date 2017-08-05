@@ -1,13 +1,14 @@
 package com.example.pankaj.deadpoolweatherapp;
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by pankaj on 6/8/17.
  */
 
-public class WeatherInfo {
+public class WeatherInfo  implements Serializable{
 
     private String weatherDate;
     private double minTemp;

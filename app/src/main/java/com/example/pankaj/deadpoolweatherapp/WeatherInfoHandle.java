@@ -15,26 +15,36 @@ import java.util.List;
  * Created by pankaj on 6/8/17.
  */
 
-public class WeatherInfoHandler {
+public class WeatherInfoHandle {
 
     public static List<WeatherInfo> getWeatherinfoList(String weatherString){
 
         List<WeatherInfo> weatherinfoList=new ArrayList<>();
-        WeatherInfo weatherInfo=new WeatherInfo();
+        WeatherInfo weatherInfo;
         try {
 
             Date today = new Date();
             SimpleDateFormat formattedDate = new SimpleDateFormat("dd-MM-yyyy");
             Calendar c = Calendar.getInstance();
-            c.add(Calendar.DATE, 1);  // number of days to add
-            String tomorrow = (String)(formattedDate.format(c.getTime()));
-            Log.d("Tomorrows date is " ,tomorrow);
+
 
 
             JSONObject jsonObject = new JSONObject(weatherString);
 
             JSONArray jsonArray= jsonObject.getJSONArray("list");
             for(int i=0;i<jsonArray.length();i++){
+                weatherInfo=new WeatherInfo();
+                if(i==0){
+                    String tomorrow = (String)(formattedDate.format(c.getTime()));
+                    Log.d("Tomorrows date is " ,tomorrow);
+                    weatherInfo.setWeatherDate(tomorrow);
+                }else {
+                    c.add(Calendar.DATE, 1);  // number of days to add
+                    String tomorrow = (String)(formattedDate.format(c.getTime()));
+                    Log.d("Tomorrows date is " ,tomorrow);
+                    weatherInfo.setWeatherDate(tomorrow);
+                }
+
                 JSONObject listObj=jsonArray.getJSONObject(i);
                 JSONObject main=listObj.getJSONObject("temp");
                 //Log.d("Main....","...."+main);
@@ -42,22 +52,18 @@ public class WeatherInfoHandler {
                 weatherInfo.setMaxTemp(main.getDouble("max"));
                 weatherInfo.setDayTemp(main.getDouble("day"));
                 weatherInfo.setNightTemp(main.getDouble("night"));
-                weatherInfo.setMinTemp(main.getDouble("morn"));
-                weatherInfo.setMaxTemp(main.getDouble("eve"));
-                weatherInfo.setDayTemp(main.getDouble("day"));
-                weatherInfo.setNightTemp(main.getDouble("night"));
+                weatherInfo.setMorningTemp(main.getDouble("morn"));
+                weatherInfo.setEveningTemp(main.getDouble("eve"));
+
                 weatherInfo.setHumidity(listObj.getDouble("humidity"));
 
                 JSONArray wmainArr=listObj.getJSONArray("weather");
                 JSONObject wmianobj=wmainArr.getJSONObject(0);
                 weatherInfo.setMainMsg(wmianobj.getString("main"));
                 weatherInfo.setDescription(wmianobj.getString("description"));
-                //Log.d("Main....","...."+main);
-                weatherInfo.setMinTemp(main.getDouble("min"));
-                weatherinfoList.add(weatherInfo);
-                weatherInfo.setWeatherDate(new Date());
 
-                Log.d("temp", "" + new Date());
+                weatherinfoList.add(weatherInfo);
+
             }
 
         }catch (org.json.JSONException e) {

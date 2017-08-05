@@ -23,6 +23,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,15 +47,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=delhi%20&APPID=b1ed602908528e97950ba59fe098bdd1";
+        String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=delhi%20&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                       Log.d("Data....","...."+response);
-                        try {
+                       Log.d("Data....","...."+WeatherInfoHandle.getWeatherinfoList(response));
+                        List<WeatherInfo> weatherInfoList=WeatherInfoHandle.getWeatherinfoList(response);
+                        for(WeatherInfo w:weatherInfoList){
+                            Log.d("Day....","'...."+w.toString());
+                        }
+
+                        txtDate.setText(weatherInfoList.get(0).getWeatherDate());
+                        txtMin.setText(String.valueOf(weatherInfoList.get(0).getMinTemp()));
+                        txtMax.setText(String.valueOf(weatherInfoList.get(0).getMaxTemp()));
+                        txtDay.setText(String.valueOf(weatherInfoList.get(0).getDayTemp()));
+                        txtNight.setText(String.valueOf(weatherInfoList.get(0).getNightTemp()));
+                        txtMorning.setText(String.valueOf(weatherInfoList.get(0).getMorningTemp()));
+                        txtEvening.setText(String.valueOf(weatherInfoList.get(0).getEveningTemp()));
+                        txtMain.setText(weatherInfoList.get(0).getMainMsg());
+                        txtDescription.setText(weatherInfoList.get(0).getDescription());
+
+
+
+                        /*try {
                             JSONObject jsonObject = new JSONObject(response);
                             String data = jsonObject.getString("cod");
 
@@ -73,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }catch (org.json.JSONException e) {
 
-                        }
+                        }*/
                     }
                 }, new Response.ErrorListener() {
             @Override

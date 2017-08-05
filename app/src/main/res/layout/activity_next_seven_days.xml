@@ -8,10 +8,13 @@
 <ScrollView
     android:layout_width="match_parent"
     android:fillViewport="true"
+    android:layout_margin="@dimen/margin_8"
     android:layout_height="match_parent">
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/weatherList"
+        android:divider="@color/colorAccent"
+        android:dividerHeight="2dp"
         android:layout_height="wrap_content">
 
     </ListView>

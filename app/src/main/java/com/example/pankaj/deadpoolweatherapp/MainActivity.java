@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -80,24 +81,24 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         txtDate.setText(weatherInfoList.get(0).getWeatherDate());
-                        txtMin.setText(String.valueOf(weatherInfoList.get(0).getMinTemp()));
-                        txtMax.setText(String.valueOf(weatherInfoList.get(0).getMaxTemp()));
-                        txtDay.setText(String.valueOf(weatherInfoList.get(0).getDayTemp()));
-                        txtNight.setText(String.valueOf(weatherInfoList.get(0).getNightTemp()));
-                        txtMorning.setText(String.valueOf(weatherInfoList.get(0).getMorningTemp()));
-                        txtEvening.setText(String.valueOf(weatherInfoList.get(0).getEveningTemp()));
-                        txtMain.setText(weatherInfoList.get(0).getMainMsg());
-                        txtDescription.setText(weatherInfoList.get(0).getDescription());
+                        txtMin.setText(String.valueOf("Min: "+weatherInfoList.get(0).getMinTemp()+" \u2103"));
+                        txtMax.setText("Max: "+String.valueOf(weatherInfoList.get(0).getMaxTemp()+" \u2103"));
+                        txtDay.setText("Day: "+String.valueOf(weatherInfoList.get(0).getDayTemp()+" \u2103"));
+                        txtNight.setText("Night: "+String.valueOf(weatherInfoList.get(0).getNightTemp()+" \u2103"));
+                        txtMorning.setText("Morning: "+String.valueOf(weatherInfoList.get(0).getMorningTemp()+" \u2103"));
+                        txtEvening.setText("Evening: "+String.valueOf(weatherInfoList.get(0).getEveningTemp()+" \u2103"));
+                        txtMain.setText("Weather: "+weatherInfoList.get(0).getMainMsg());
+                        txtDescription.setText("Description: "+weatherInfoList.get(0).getDescription());
 
                         txtDateTomorrow.setText(weatherInfoList.get(1).getWeatherDate());
-                        txtMintomorrow.setText(String.valueOf(weatherInfoList.get(1).getMinTemp()));
-                        txtMaxtomorrow.setText(String.valueOf(weatherInfoList.get(1).getMaxTemp()));
-                        txtDaytomorrow.setText(String.valueOf(weatherInfoList.get(1).getDayTemp()));
-                        txtNighttomorrow.setText(String.valueOf(weatherInfoList.get(1).getNightTemp()));
-                        txtMorningtomorrow.setText(String.valueOf(weatherInfoList.get(1).getMorningTemp()));
-                        txtEveningtomorrow.setText(String.valueOf(weatherInfoList.get(1).getEveningTemp()));
-                        txtMaintomorrow.setText(weatherInfoList.get(1).getMainMsg());
-                        txtDescriptiontomorrow.setText(weatherInfoList.get(1).getDescription());
+                        txtMintomorrow.setText("Min: "+String.valueOf(weatherInfoList.get(1).getMinTemp()+" \u2103"));
+                        txtMaxtomorrow.setText("Max: "+String.valueOf(weatherInfoList.get(1).getMaxTemp()+" \u2103"));
+                        txtDaytomorrow.setText("Day: "+String.valueOf(weatherInfoList.get(1).getDayTemp()+" \u2103"));
+                        txtNighttomorrow.setText("Night: "+String.valueOf(weatherInfoList.get(1).getNightTemp()+" \u2103"));
+                        txtMorningtomorrow.setText("Morning: "+String.valueOf(weatherInfoList.get(1).getMorningTemp()+" \u2103"));
+                        txtEveningtomorrow.setText("Evening: "+String.valueOf(weatherInfoList.get(1).getEveningTemp()+" \u2103"));
+                        txtMaintomorrow.setText("Weather: "+weatherInfoList.get(1).getMainMsg());
+                        txtDescriptiontomorrow.setText("Description: "+weatherInfoList.get(1).getDescription());
 
 
 

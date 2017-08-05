@@ -2,11 +2,13 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin_8"
     android:stretchColumns="1">
     <TableRow>
         <TextView
             android:text="@string/Date_day"
             android:id="@+id/txtDateDay"
+            android:textAppearance="@style/DateFont"
             android:layout_span="2"
             android:layout_gravity="center"/>
     </TableRow>
@@ -15,10 +17,12 @@
         <TextView
             android:text="@string/mintemp"
             android:id="@+id/txtMin"
+            android:textAppearance="@style/TextFont"
             android:padding="3dp" />
         <TextView
             android:text="@string/maxtemp"
             android:id="@+id/txtMax"
+            android:textAppearance="@style/TextFont"
             android:gravity="right"
             android:padding="3dp" />
     </TableRow>
@@ -26,10 +30,12 @@
     <TableRow>
         <TextView
             android:text="@string/daytemp"
+            android:textAppearance="@style/TextFont"
             android:id="@+id/txtDaytemp"
             android:padding="3dp" />
         <TextView
             android:text="@string/nigntemp"
+            android:textAppearance="@style/TextFont"
             android:id="@+id/txtNighttemp"
             android:gravity="right"
             android:padding="3dp" />
@@ -39,10 +45,12 @@
         <TextView
             android:text="@string/morningemp"
             android:id="@+id/txtMorningtemp"
+            android:textAppearance="@style/TextFont"
             android:padding="3dp" />
         <TextView
             android:text="@string/eveningtemp"
             android:id="@+id/txtEveingtemp"
+            android:textAppearance="@style/TextFont"
             android:gravity="right"
             android:padding="3dp" />
     </TableRow>
@@ -50,6 +58,7 @@
         <TextView
             android:text="@string/maininfo"
             android:id="@+id/txtmaininfo"
+            android:textAppearance="@style/TextFont"
             android:layout_span="2"
             android:padding="3dp"/>
 
@@ -58,6 +67,7 @@
         <TextView
             android:text="@string/maininfoDescription"
             android:id="@+id/txtmaininfoDescription"
+            android:textAppearance="@style/TextFont"
             android:layout_span="2"
             android:padding="3dp"/>
 

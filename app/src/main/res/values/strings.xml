@@ -10,4 +10,6 @@
     <string name="eveningtemp">Evening Temp</string>
     <string name="maininfo">Main Info</string>
     <string name="maininfoDescription">Main Info Description</string>
+    <string name="current_weateher_forecast">Current Weather Forecast</string>
+    <string name="weeekly_forecast">Weekly Weather Forecast</string>
 </resources>

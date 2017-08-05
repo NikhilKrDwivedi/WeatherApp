@@ -96,14 +96,14 @@ public class NextSevenDaysActivity extends AppCompatActivity {
 
 
             holder1.txtDate.setText(weatherInfoList.get(position).getWeatherDate());
-            holder1.txtMin.setText(String.valueOf(weatherInfoList.get(position).getMinTemp()));
-            holder1.txtMax.setText(String.valueOf(weatherInfoList.get(position).getMaxTemp()));
-            holder1.txtDay.setText(String.valueOf(weatherInfoList.get(position).getDayTemp()));
-            holder1.txtNight.setText(String.valueOf(weatherInfoList.get(position).getNightTemp()));
-            holder1.txtMorning.setText(String.valueOf(weatherInfoList.get(position).getMorningTemp()));
-            holder1.txtEvening.setText(String.valueOf(weatherInfoList.get(position).getEveningTemp()));
-            holder1.txtMain.setText(weatherInfoList.get(position).getMainMsg());
-            holder1.txtDescription.setText(weatherInfoList.get(position).getDescription());
+            holder1.txtMin.setText(String.valueOf("Min: "+weatherInfoList.get(position).getMinTemp()+" \u2103"));
+            holder1.txtMax.setText(String.valueOf("Max: "+weatherInfoList.get(position).getMaxTemp()+" \u2103"));
+            holder1.txtDay.setText(String.valueOf("Day: "+weatherInfoList.get(position).getDayTemp()+" \u2103"));
+            holder1.txtNight.setText(String.valueOf("Night: "+weatherInfoList.get(position).getNightTemp()+" \u2103"));
+            holder1.txtMorning.setText(String.valueOf("Morning: "+weatherInfoList.get(position).getMorningTemp()+" \u2103"));
+            holder1.txtEvening.setText(String.valueOf("Evening: "+weatherInfoList.get(position).getEveningTemp()+" \u2103"));
+            holder1.txtMain.setText("Weather: "+weatherInfoList.get(position).getMainMsg());
+            holder1.txtDescription.setText("Description: "+weatherInfoList.get(position).getDescription());
 
 
             rowView1.setOnClickListener(new View.OnClickListener() {

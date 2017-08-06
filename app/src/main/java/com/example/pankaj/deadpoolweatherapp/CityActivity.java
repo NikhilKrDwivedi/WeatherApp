@@ -70,11 +70,12 @@ public class CityActivity extends AppCompatActivity {
                                Log.e("Json....",".....Exception"+e.getMessage());
                             }
 
-
+                            Pref.saveCity(city);
                             Intent intent= new Intent(CityActivity.this, MainActivity.class);
                             intent.putExtra("weatherList",(Serializable) weatherInfoList);
                             intent.putExtra("cityName",city);
                             startActivity(intent);
+                            finish();
                         }
                     }, new Response.ErrorListener() {
                 @Override

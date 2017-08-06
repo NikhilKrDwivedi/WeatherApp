@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item android:id="@+id/item_city_name"
+        android:title="New Delhi"></item>
+    <item android:id="@+id/item_change_city"
+        android:title="Change City"></item>
+    <item android:id="@+id/item_change_setting"
+        android:title="Setting"></item>
+</menu>

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 
@@ -104,26 +105,30 @@ public void btnNextSevenDaysOnclick(View v){
     startActivity(intent);
 }
 
-@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
 
-    MenuInflater inflater=getMenuInflater();
-    inflater.inflate(R.menu.menu,menu);
-    menu.getItem(0).setTitle("Ghaziabad");
-    return super.onCreateOptionsMenu(menu);
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+        menu.getItem(0).setTitle(Pref.getCity());
+        return super.onCreateOptionsMenu(menu);
 
-}
-
-@Override
-    public boolean onOptionsItemSelected(MenuItem item){
-    switch (item.getItemId()){
-        case R.id.item_change_city:
-            Intent intent=new Intent(MainActivity.this,CityActivity.class);
-            startActivity(intent);
-            finish();
-            break;
     }
- return super.onOptionsItemSelected(item);
-}
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.item_change_city:
+                Pref.clearCity();
+                Intent intent=new Intent(MainActivity.this,CityActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.item_change_setting:
+                Toast.makeText(MainActivity.this,"Under Maintenance..!!!",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

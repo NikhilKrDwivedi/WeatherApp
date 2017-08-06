@@ -43,11 +43,15 @@ public class CityActivity extends AppCompatActivity {
 
         cityName = (EditText) findViewById(R.id.etxtCityName);
         btnGetCityWeather=(Button) findViewById(R.id.btnGetCityWeather);
-        if(!Pref.getCity().equals(null)){
+
+
+        if(Pref.getCity()!=null){
+
             cityName.setVisibility(View.INVISIBLE);
             btnGetCityWeather.setVisibility(View.INVISIBLE);
             updateWeather(Pref.getCity());
         }else {
+
             cityName.setVisibility(View.VISIBLE);
             btnGetCityWeather.setVisibility(View.VISIBLE);
         }
@@ -73,51 +77,53 @@ public class CityActivity extends AppCompatActivity {
         //Volley library to request weather information from http://api.openweathermap.org
         progressDialog.setTitle("Weather Info");
         progressDialog.setMessage("Getting data please wait...!!!");
-        progressDialog.show();
-        RequestQueue queue = Volley.newRequestQueue(CityActivity.this);
-        StringBuilder sb=new StringBuilder();
-        sb.append("http://api.openweathermap.org/data/2.5/forecast/daily?q=");
-        sb.append(cityName);
-        sb.append("&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1");
-        String url = sb.toString();
-        //  String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=delhi%20&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1";
+        if(WeatherInfoHandle.isOnline()) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        Log.d("Data....", "...." + WeatherInfoHandle.getWeatherinfoList(response));
-                        weatherInfoList = WeatherInfoHandle.getWeatherinfoList(response);
-                        for (WeatherInfo w : weatherInfoList) {
-                            Log.d("Day....", "'...." + w.toString());
-                        }
-                        try{
-                            JSONObject jsonObject=new JSONObject(response);
-                            JSONObject  cityObj=jsonObject.getJSONObject("city");
-                            Log.d("City name:","....."+cityObj.getString("name"));
-                            city=""+cityObj.getString("name");
-                        }catch (Exception e){
-                            Log.e("Json....",".....Exception"+e.getMessage());
-                        }
+            progressDialog.show();
+            RequestQueue queue = Volley.newRequestQueue(CityActivity.this);
+            StringBuilder sb = new StringBuilder();
+            sb.append("http://api.openweathermap.org/data/2.5/forecast/daily?q=");
+            sb.append(cityName);
+            sb.append("&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1");
+            String url = sb.toString();
+            //  String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=delhi%20&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1";
 
-                        Pref.saveCity(city);
-                        Intent intent= new Intent(CityActivity.this, MainActivity.class);
-                        intent.putExtra("weatherList",(Serializable) weatherInfoList);
-                        intent.putExtra("cityName",city);
-                        startActivity(intent);
-                        progressDialog.dismiss();
-                        finish();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley error...","...."+error.getMessage());
-            }
-        });
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // Display the first 500 characters of the response string.
+                            Log.d("Data....", "...." + WeatherInfoHandle.getWeatherinfoList(response));
+                            weatherInfoList = WeatherInfoHandle.getWeatherinfoList(response);
+                            for (WeatherInfo w : weatherInfoList) {
+                                Log.d("Day....", "'...." + w.toString());
+                            }
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                JSONObject cityObj = jsonObject.getJSONObject("city");
+                                Log.d("City name:", "....." + cityObj.getString("name"));
+                                city = "" + cityObj.getString("name");
+                            } catch (Exception e) {
+                                Log.e("Json....", ".....Exception" + e.getMessage());
+                            }
+
+                            Pref.saveCity(city);
+                            Intent intent = new Intent(CityActivity.this, MainActivity.class);
+                            intent.putExtra("weatherList", (Serializable) weatherInfoList);
+                            intent.putExtra("cityName", city);
+                            startActivity(intent);
+                            progressDialog.dismiss();
+                            finish();
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("Volley error...", "...." + error.getMessage());
+                }
+            });
 // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
+            queue.add(stringRequest);
+        }
     }
 }
 

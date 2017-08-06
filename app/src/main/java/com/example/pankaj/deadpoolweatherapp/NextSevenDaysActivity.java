@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -133,6 +134,7 @@ public class NextSevenDaysActivity extends AppCompatActivity {
 
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
+        menu.getItem(0).setTitle(Pref.getCity());
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -141,6 +143,13 @@ public class NextSevenDaysActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()){
             case R.id.item_change_city:
+                Pref.clearCity();
+                Intent intent=new Intent(NextSevenDaysActivity.this,CityActivity.class);
+                startActivity(intent);
+                finish();
+                break;
+            case R.id.item_change_setting:
+                Toast.makeText(NextSevenDaysActivity.this,"Under Maintenance..!!!",Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);

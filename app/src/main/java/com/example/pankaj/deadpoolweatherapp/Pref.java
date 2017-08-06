@@ -2,6 +2,8 @@ package com.example.pankaj.deadpoolweatherapp;
 
 import android.content.SharedPreferences;
 
+import java.io.File;
+
 import static android.content.Context.MODE_PRIVATE;
 
 /**
@@ -9,6 +11,10 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Pref {
+
+    public Pref(){
+
+    }
 
     public static void saveCity(String name){
         SharedPreferences MyPref= MyApplication.getContext().getSharedPreferences("City",MODE_PRIVATE);
@@ -32,4 +38,7 @@ public class Pref {
         editor.clear();
         editor.commit();
     }
+
+
+
 }

@@ -1,6 +1,10 @@
 package com.example.pankaj.deadpoolweatherapp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -77,6 +81,16 @@ public class WeatherInfoHandle {
         return weatherinfoList;
     }
 
+    public static boolean isOnline() {
+        ConnectivityManager conMgr = (ConnectivityManager) MyApplication.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
+
+        if(netInfo == null || !netInfo.isConnected() || !netInfo.isAvailable()){
+            Toast.makeText(MyApplication.getContext(), "No Internet connection!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
 
 }
 

@@ -4,35 +4,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Html;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.Serializable;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.Date;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
 
     List<WeatherInfo> weatherInfoList=null;
+    TextView cityName;
     TextView txtDate,txtMin,txtMax,txtDay,txtNight,txtMorning,txtEvening,txtMain,txtDescription;
     LinearLayout linearLayoutToday,linearLayoutTomorrow;
     TextView txtDateTomorrow,txtMintomorrow,txtMaxtomorrow,txtDaytomorrow,txtNighttomorrow,txtMorningtomorrow,txtEveningtomorrow,txtMaintomorrow,txtDescriptiontomorrow;
@@ -42,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        cityName=(TextView) findViewById(R.id.txtCityName);
         linearLayoutToday=(LinearLayout) findViewById(R.id.linearlayoutToday);
         txtDate=(TextView) linearLayoutToday.findViewById(R.id.txtDateDay);
         txtMin=(TextView) linearLayoutToday.findViewById(R.id.txtMin);
@@ -65,20 +51,10 @@ public class MainActivity extends AppCompatActivity {
         txtDescriptiontomorrow=(TextView) linearLayoutTomorrow.findViewById(R.id.txtmaininfoDescription);
 
 
+        Intent i=getIntent();
+        weatherInfoList=(List<WeatherInfo>) i.getSerializableExtra("weatherList");
+        cityName.setText(cityName.getText()+":"+i.getStringExtra("cityName"));
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=delhi%20&units=metric&APPID=b1ed602908528e97950ba59fe098bdd1";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                       Log.d("Data....","...."+WeatherInfoHandle.getWeatherinfoList(response));
-                        weatherInfoList=WeatherInfoHandle.getWeatherinfoList(response);
-                        for(WeatherInfo w:weatherInfoList){
-                            Log.d("Day....","'...."+w.toString());
-                        }
 
                         txtDate.setText(weatherInfoList.get(0).getWeatherDate());
                         txtMin.setText(String.valueOf("Min: "+weatherInfoList.get(0).getMinTemp()+" \u2103"));
@@ -99,40 +75,6 @@ public class MainActivity extends AppCompatActivity {
                         txtEveningtomorrow.setText("Evening: "+String.valueOf(weatherInfoList.get(1).getEveningTemp()+" \u2103"));
                         txtMaintomorrow.setText("Weather: "+weatherInfoList.get(1).getMainMsg());
                         txtDescriptiontomorrow.setText("Description: "+weatherInfoList.get(1).getDescription());
-
-
-
-                        /*try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            String data = jsonObject.getString("cod");
-
-                            JSONArray jsonArray= jsonObject.getJSONArray("list");
-                            JSONObject listObj1=jsonArray.getJSONObject(0);
-                            JSONObject main1=listObj1.getJSONObject("temp");
-                            txtDate.setText(main1.getString("day"));
-                            txtMin.setText("Min:"+main1.getDouble("min")+"'C");
-                            for(int i=0;i<jsonArray.length();i++){
-                                JSONObject listObj=jsonArray.getJSONObject(i);
-                                JSONObject main=listObj.getJSONObject("temp");
-                                //Log.d("Main....","...."+main);
-                                double temp = main.getDouble("min");
-                                Log.d("temp", "" + new Date()+1+""+temp);
-                            }
-
-                        }catch (org.json.JSONException e) {
-
-                        }*/
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                /*
-                *
-                * */
-            }
-        });
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
 
     }
 

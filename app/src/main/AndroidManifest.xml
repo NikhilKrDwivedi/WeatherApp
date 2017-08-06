@@ -11,14 +11,22 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:label="@string/current_weateher_forecast">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/current_weateher_forecast">
+
+        </activity>
+        <activity
+            android:name=".NextSevenDaysActivity"
+            android:label="@string/weeekly_forecast" />
+        <activity android:name=".CityActivity" android:label="Search Weather by City Name">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".NextSevenDaysActivity" android:label="@string/weeekly_forecast"></activity>
     </application>
 
 </manifest>

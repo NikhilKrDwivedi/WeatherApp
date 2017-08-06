@@ -32,8 +32,8 @@
     android:background="@drawable/button_bg"
     android:textAllCaps="false"
     android:layout_margin="@dimen/margin_16"
+    android:id="@+id/btnGetCityWeather"
     android:textColor="@android:color/white"
-    android:onClick="btnGetWeatherOnClick"
     android:padding="@dimen/margin_8"
     android:text="Get City Weather"/>
 </LinearLayout>

@@ -20,6 +20,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.List;
 
+/*This class is to get weather information based on city name*/
 public class CityActivity extends AppCompatActivity {
 
     EditText cityName;
@@ -37,6 +38,10 @@ public class CityActivity extends AppCompatActivity {
     public void btnGetWeatherOnClick(View v) {
 
         if (!cityName.getText().equals("")) {
+
+
+
+            //Volley library to request weather information from http://api.openweathermap.org
 
             RequestQueue queue = Volley.newRequestQueue(CityActivity.this);
             StringBuilder sb=new StringBuilder();

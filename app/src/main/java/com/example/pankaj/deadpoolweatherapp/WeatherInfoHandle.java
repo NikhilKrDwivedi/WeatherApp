@@ -15,8 +15,12 @@ import java.util.List;
  * Created by pankaj on 6/8/17.
  */
 
+/*This class handle the Json data*/
+
 public class WeatherInfoHandle {
 
+
+    //Method to get string and convert the string to WeatherInfo object
     public static List<WeatherInfo> getWeatherinfoList(String weatherString){
 
         List<WeatherInfo> weatherinfoList=new ArrayList<>();
@@ -35,14 +39,14 @@ public class WeatherInfoHandle {
             for(int i=0;i<jsonArray.length();i++){
                 weatherInfo=new WeatherInfo();
                 if(i==0){
-                    String tomorrow = (String)(formattedDate.format(c.getTime()));
-                    Log.d("Tomorrows date is " ,tomorrow);
-                    weatherInfo.setWeatherDate(tomorrow);
+                    String today1= (String)(formattedDate.format(c.getTime()));
+                    Log.d("Today date is " ,today1);
+                    weatherInfo.setWeatherDate(today1);
                 }else {
                     c.add(Calendar.DATE, 1);  // number of days to add
-                    String tomorrow = (String)(formattedDate.format(c.getTime()));
-                    Log.d("Tomorrows date is " ,tomorrow);
-                    weatherInfo.setWeatherDate(tomorrow);
+                    String nextday = (String)(formattedDate.format(c.getTime()));
+                    Log.d("Nextday date is " ,nextday);
+                    weatherInfo.setWeatherDate(nextday);
                 }
 
                 JSONObject listObj=jsonArray.getJSONObject(i);

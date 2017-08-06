@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/*This class get weather information from intent list and update listview*/
 public class NextSevenDaysActivity extends AppCompatActivity {
 
     ListView listView;
@@ -23,9 +23,18 @@ public class NextSevenDaysActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_next_seven_days);
         listView=(ListView) findViewById(R.id.weatherList);
-        Intent i=getIntent();
 
-        listView.setAdapter(new CustomAdapterWeatherList(this,(List<WeatherInfo>) i.getSerializableExtra("list")));
+
+        try{
+            //get Intent information parse using serializable for custom class WeatherInfo
+            Intent i=getIntent();
+            listView.setAdapter(new CustomAdapterWeatherList(this,(List<WeatherInfo>) i.getSerializableExtra("list")));
+        }catch (Exception e){
+
+        }
+
+
+
     }
 
     /*This is Private Custom Adapter to to fill the data in Listview and perform action on list item click*/

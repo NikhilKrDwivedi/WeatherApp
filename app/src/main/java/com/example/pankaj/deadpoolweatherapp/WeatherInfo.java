@@ -8,6 +8,9 @@ import java.util.Date;
  * Created by pankaj on 6/8/17.
  */
 
+/*
+* This is custom class to store weather useful data*/
+
 public class WeatherInfo  implements Serializable{
 
     private String weatherDate;

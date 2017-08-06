@@ -5,8 +5,16 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/backgroup_bg"
     android:layout_height="match_parent"
     tools:context="com.example.pankaj.deadpoolweatherapp.MainActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/white_bg_outline"
+        android:layout_margin="@dimen/margin_8"
+        android:layout_height="match_parent">
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -32,8 +40,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:padding="@dimen/margin_8"
         android:text="7 days forecast"
+        android:textColor="@android:color/white"
+        android:background="@drawable/button_bg"
         android:onClick="btnNextSevenDaysOnclick"
          />
+    </LinearLayout>
 
 </LinearLayout>

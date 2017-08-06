@@ -3,13 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+android:background="@drawable/backgroup_bg"
     android:layout_height="match_parent"
     tools:context="com.example.pankaj.deadpoolweatherapp.NextSevenDaysActivity">
 <ScrollView
     android:layout_width="match_parent"
     android:fillViewport="true"
     android:layout_margin="@dimen/margin_8"
-    android:layout_height="match_parent">
+    android:background="@drawable/white_bg_outline"
+    android:padding="@dimen/margin_8"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="8dp"
+    tools:layout_editor_absoluteX="8dp">
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/weatherList"
